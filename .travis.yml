@@ -1,4 +1,4 @@
 language: csharp
 solution: AutoIISInstaller.sln
 install:
-  - nuget restore solution-name.sln
+  - nuget restore AutoIISInstaller.sln
