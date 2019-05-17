@@ -5,7 +5,7 @@ namespace AutoIISInstaller
 {
     public class CreateApplicationPool
     {
-        public void CreatePoolIIS(string PoolName)
+        public ApplicationPool CreatePoolIIS(string PoolName)
         {
             ServerManager server = new ServerManager();
 
@@ -45,6 +45,7 @@ namespace AutoIISInstaller
                 //we save our new ApplicationPool!
                 server.CommitChanges();
             }
+            return myApplicationPool;
         }
     }
 }
