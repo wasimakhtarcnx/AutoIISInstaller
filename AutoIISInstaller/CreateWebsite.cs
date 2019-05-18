@@ -9,6 +9,14 @@ namespace AutoIISInstaller
         {
 
             ServerManager server = new ServerManager();
+            try
+            {
+                server.Sites.First(s => s.Name.Equals("Default Web Site")).Stop();
+            }
+            catch (System.InvalidOperationException e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
             //Create W
             if (server.Sites != null && server.Sites.Count > 0)
             {
@@ -33,6 +41,20 @@ namespace AutoIISInstaller
 
                     //save the new Site!
                     server.CommitChanges();
+                    site.Start();
+                }
+                else
+                {
+                    try
+                    {
+                        server.Sites.First(s => s.Name.Equals(WebSiteName)).Start();
+                    }
+                    catch (System.Exception e)
+                    {
+
+                        System.Console.WriteLine(e.Message);
+                    }
+
                 }
             }
         }

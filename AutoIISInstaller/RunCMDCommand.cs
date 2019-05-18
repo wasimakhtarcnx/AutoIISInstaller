@@ -24,15 +24,24 @@ namespace AutoIISInstaller
         }
         public void CopyFiles(string SourcePath, string DestinationPath)
         {
-            //Now Create all of the directories
-            foreach (string dirPath in Directory.GetDirectories(SourcePath, "*",
-                SearchOption.AllDirectories))
-                Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
+            try
+            {
+                //Now Create all of the directories
+                foreach (string dirPath in Directory.GetDirectories(SourcePath, "*",
+                    SearchOption.AllDirectories))
+                    Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
 
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(SourcePath, "*.*",
-                SearchOption.AllDirectories))
-                File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+                //Copy all the files & Replaces any files with the same name
+                foreach (string newPath in Directory.GetFiles(SourcePath, "*.*",
+                    SearchOption.AllDirectories))
+                    File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+            }
+            catch (System.Exception e)
+            {
+
+                System.Console.WriteLine(e.Message);
+            }
+
         }
     }
 }

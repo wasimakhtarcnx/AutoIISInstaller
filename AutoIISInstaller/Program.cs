@@ -8,7 +8,7 @@ namespace AutoIISInstaller
     {
         static void Main(string[] args)
         {
-            string smsPool = "sms.local";
+            string smsPool = "schoolmanagement";
             ApplicationPool applicationPool;
             System.Console.WriteLine("IIS Installer Started");
             string appLocation = "";
@@ -27,11 +27,14 @@ namespace AutoIISInstaller
             CreateApplicationPool createApplicationPool = new CreateApplicationPool();
             applicationPool = createApplicationPool.CreatePoolIIS(smsPool);
             CreateWebsite createWebsite = new CreateWebsite();
-            createWebsite.AddWebsite("ncstcsmsoffline", @"C:\inetpub\ncstcsmsoffline\", applicationPool);
+            createWebsite.AddWebsite("schoolmanagement", @"C:\inetpub\schoolmanagement\", applicationPool);
             RunCMDCommand runCMDCommand = new RunCMDCommand();
-            runCMDCommand.CopyFiles(@"C:\Users\wasim.akhtar\Documents\TemWebsite\", @"C:\inetpub\ncstcsmsoffline\");
+            runCMDCommand.CopyFiles(@"C:\Users\wasim.akhtar\source\repos\SchoolMangement\SchoolMangement\bin\Release\Publish\", @"C:\inetpub\schoolmanagement\");
 
             System.Console.WriteLine("IIS Installer Ended");
+
+
+            System.Diagnostics.Process.Start("http://localhost/");
             Console.ReadLine();
 
         }

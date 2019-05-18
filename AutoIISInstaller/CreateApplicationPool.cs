@@ -40,7 +40,7 @@ namespace AutoIISInstaller
                 myApplicationPool.ProcessModel.IdentityType = ProcessModelIdentityType.NetworkService;
 
                 //we set the runtime version
-                myApplicationPool.ManagedRuntimeVersion = "No Managed Code";
+                myApplicationPool.ManagedRuntimeVersion = "v4.0";
 
                 //we save our new ApplicationPool!
                 server.CommitChanges();
