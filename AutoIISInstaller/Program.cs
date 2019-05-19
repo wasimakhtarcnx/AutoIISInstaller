@@ -16,6 +16,7 @@ namespace AutoIISInstaller
             {
                 Console.WriteLine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
                 appLocation = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                appLocation = appLocation + @"\Publish\";
             }
             catch (System.IO.IOException)
             {
@@ -29,7 +30,7 @@ namespace AutoIISInstaller
             CreateWebsite createWebsite = new CreateWebsite();
             createWebsite.AddWebsite("schoolmanagement", @"C:\inetpub\schoolmanagement\", applicationPool);
             RunCMDCommand runCMDCommand = new RunCMDCommand();
-            runCMDCommand.CopyFiles(@"C:\Users\wasim.akhtar\source\repos\SchoolMangement\SchoolMangement\bin\Release\Publish\", @"C:\inetpub\schoolmanagement\");
+            runCMDCommand.CopyFiles(appLocation, @"C:\inetpub\schoolmanagement\");
 
             System.Console.WriteLine("IIS Installer Ended");
 
